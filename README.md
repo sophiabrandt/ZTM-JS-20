@@ -24,7 +24,7 @@ You probably want to have Node.js installed for convenience.
 Get a copy of the repository:
 
 ```bash
-$ npx degit sophiabrandt/ZTM-JS-20
+$ npx degit sophiabrandt/ZTM-JS-20 ZTM-JS-20
 ```
 
 ## Usage
