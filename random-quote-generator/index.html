@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/modern-css-reset/dist/reset.min.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/modern-css-reset/dist/reset.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Random Quote Generator</title>
-</head>
-<body>
-    <div class="center-container">
-        <h1>Random Quote Generator</h1>
+  </head>
+  <body>
+      <!-- container -->
+    <div class="center-container cluster">
+      <!-- Quote -->
+      <div class="quote-text">
+        <span id="quote">I'm baby plaid vaporware occupy yuccie direct trade. Microdosing plaid tofu beard flexitarian. Kombucha banh mi deep v, man braid hoodie neutra offal skateboard hammock.</span>
+      </div>
+      <!-- Author -->
+      <div class="quote-author"><span id="author">Author</span></div>
+      <!-- Buttons -->
+      <div class="button-container">
+        <button
+          class="button with-icon"
+          type="button"
+          aria-pressed="true"
+          title="Tweet This!"
+        >
+        <img src="../static/twitter.svg" class="icon" alt="Twitter button" />Tweet
+        </button>
+        <button
+          class="button with-icon"
+          type="button"
+          aria-pressed="true"
+          title="Get a new quote!"
+        >
+        <img src="../static/shuffle.svg" class="icon" alt="Shuffle button" />New Quote</button>
+      </div>
     </div>
     <script src="index.js"></script>
-</body>
+  </body>
 </html>
