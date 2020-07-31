@@ -1,0 +1,23 @@
+# base image
+FROM hayd/deno:alpine-1.2.1
+
+# working directory
+RUN mkdir -p /opt/deno_app && chown deno:deno /opt/deno_app
+WORKDIR /opt/deno_app
+
+# change to non-priviliged user
+USER deno
+
+# copy dependencies
+COPY --chown=deno:deno api/deps.js api/deps.js
+RUN deno cache api/deps.js
+
+# copy in our source code last, as it changes the most
+COPY --chown=deno:deno . .
+
+# set shell
+ENV SHELL /bin/sh
+
+# Run app
+ENTRYPOINT ["deno", "run", "--lock=lock.json", "--cached-only", "--allow-all", "Drakefile.ts"]
+CMD ["start"]

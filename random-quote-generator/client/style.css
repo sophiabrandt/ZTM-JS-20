@@ -91,7 +91,7 @@ body {
 }
 
 button:hover {
-  filter: brightness(90%);
+  background-color: rgb(var(--color-dark-secondary));
 }
 
 [aria-pressed] {
