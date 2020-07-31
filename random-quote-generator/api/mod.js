@@ -1,5 +1,5 @@
 import { Application, Router, send, log, flags } from './deps.js'
-import { getQuote } from './controllers/index.js'
+import { getSingleQuote } from './controllers/index.js'
 import { makeCallback } from './callback/index.js'
 
 const app = new Application()
@@ -38,7 +38,7 @@ app.addEventListener('error', (event) => {
 // })
 
 // routes
-router.get('/quote', makeCallback(getQuote))
+router.get('/quote', makeCallback(getSingleQuote))
 
 app.use(router.routes())
 app.use(router.allowedMethods())

@@ -1,10 +1,10 @@
-import { makeSingleQuote } from './single-quote.js'
-import { quoteData } from '../data-access/index.js'
+import { makeListSingleQuote } from './list-single-quote.js'
+import { singleQuoteData } from '../data-access/index.js'
 
-const singleQuote = makeSingleQuote({ quoteData })
+const listSingleQuote = makeListSingleQuote({ singleQuoteData })
 
 const quoteService = Object.freeze({
-  singleQuote,
+  listSingleQuote,
 })
 
-export { quoteService, singleQuote }
+export { quoteService, listSingleQuote }

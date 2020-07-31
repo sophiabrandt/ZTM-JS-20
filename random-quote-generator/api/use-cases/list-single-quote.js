@@ -1,6 +1,6 @@
-function makeSingleQuote({ quoteData }) {
-  return async function singleQuote() {
-    const fetchedQuote = await quoteData.fetchQuote()
+function makeListSingleQuote({ singleQuoteData }) {
+  return async function listSingleQuote() {
+    const fetchedQuote = await singleQuoteData.fetchSingleQuote()
 
     if (!fetchedQuote) {
       return fetchedNothing()
@@ -16,4 +16,4 @@ function makeSingleQuote({ quoteData }) {
   }
 }
 
-export { makeSingleQuote }
+export { makeListSingleQuote }

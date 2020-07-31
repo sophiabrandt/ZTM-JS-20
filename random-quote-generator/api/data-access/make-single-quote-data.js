@@ -1,5 +1,5 @@
-function makeQuoteData({ url }) {
-  async function fetchQuote() {
+function makeSingleQuoteData({ url }) {
+  async function fetchSingleQuote() {
     const response = await fetch(url)
     return await response.json()
     if (!data) {
@@ -9,8 +9,8 @@ function makeQuoteData({ url }) {
   }
 
   return Object.freeze({
-    fetchQuote,
+    fetchSingleQuote,
   })
 }
 
-export { makeQuoteData }
+export { makeSingleQuoteData }

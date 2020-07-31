@@ -1,9 +1,9 @@
-import { makeGetQuote } from './get-quote.js'
+import { makeGetSingleQuote } from './get-single-quote.js'
 
-const getQuote = makeGetQuote()
+const getSingleQuote = makeGetSingleQuote()
 
 const quoteController = Object.freeze({
-  getQuote,
+  getSingleQuote,
 })
 
-export { quoteController, getQuote }
+export { quoteController, getSingleQuote }
