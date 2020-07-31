@@ -21,6 +21,7 @@ function makeCallback(controller) {
           if (httpResponse.headers) {
             response.headers.set('Content-Type', httpResponse.headers['Content-Type'])
           }
+          response.headers.get('Access-Control-Origin')
           response.status = httpResponse.status
           response.body = httpResponse.body
           resolve()

@@ -1,9 +1,12 @@
-import { Application, Router, send, log, flags } from './deps.ts'
+import { Application, Router, send, log, flags, oakCors } from './deps.ts'
 import { getSingleQuote } from './controllers/index.js'
 import { makeCallback } from './callback/index.js'
 
 const app = new Application()
 const router = new Router()
+
+// cors
+app.use(oakCors())
 
 const PORT = 3000
 const argPort = flags.parse(Deno.args).port

@@ -4,3 +4,4 @@ export * as flags from "https://deno.land/std@0.61.0/flags/mod.ts"
 
 // third party libraries
 export { Application, Router, send } from 'https://deno.land/x/oak@v6.0.1/mod.ts'
+export { oakCors } from 'https://deno.land/x/cors/mod.ts';
