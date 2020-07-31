@@ -22,11 +22,12 @@ await log.setup({
   },
 })
 
-// // allow oak to listen to thrown errors
-// app.addEventListener('error', (event) => {
-//   log.error(event.error)
-// })
-// // error handling
+// allow oak to listen to thrown errors
+app.addEventListener('error', (event) => {
+  log.error(event.error)
+})
+
+// error handling
 // app.use(async (ctx, next) => {
 //   try {
 //     await next()

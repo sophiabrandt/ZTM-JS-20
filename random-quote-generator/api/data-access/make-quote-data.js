@@ -5,7 +5,7 @@ function makeQuoteData({ url }) {
     if (!data) {
       return null
     }
-    return { quoteAuthor, quoteText }
+    return data
   }
 
   return Object.freeze({

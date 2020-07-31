@@ -8,8 +8,8 @@ function makeSingleQuote({ quoteData }) {
 
     function fetchedNothing() {
       return {
-        fetched: false,
-        message: 'Quote not available.',
+        data: false,
+        message: 'Quote not available',
       }
     }
     return fetchedQuote
