@@ -1,8 +1,8 @@
 function makeListSingleQuote({ singleQuoteData }) {
   return async function listSingleQuote() {
-    const fetchedQuote = await singleQuoteData.fetchSingleQuote()
+    const fetchedSingleQuote = await singleQuoteData.fetchSingleQuote()
 
-    if (!fetchedQuote) {
+    if (!fetchedSingleQuote) {
       return fetchedNothing()
     }
 
@@ -12,7 +12,7 @@ function makeListSingleQuote({ singleQuoteData }) {
         message: 'Quote not available',
       }
     }
-    return fetchedQuote
+    return fetchedSingleQuote
   }
 }
 
