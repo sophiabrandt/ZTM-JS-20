@@ -1,4 +1,4 @@
-import { Application, Router, send, log, flags } from './deps.js'
+import { Application, Router, send, log, flags } from './deps.ts'
 import { getSingleQuote } from './controllers/index.js'
 import { makeCallback } from './callback/index.js'
 
@@ -27,18 +27,8 @@ app.addEventListener('error', (event) => {
   log.error(event.error)
 })
 
-// error handling
-// app.use(async (ctx, next) => {
-//   try {
-//     await next()
-//   } catch (err) {
-//     ctx.response.body = 'Internal Server Error'
-//     throw err
-//   }
-// })
-
 // routes
-router.get('/quote', makeCallback(getSingleQuote))
+router.get('/quotes/random', makeCallback(getSingleQuote))
 
 app.use(router.routes())
 app.use(router.allowedMethods())

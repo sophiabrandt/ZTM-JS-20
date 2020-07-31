@@ -13,8 +13,8 @@ RUN deno install --allow-read --allow-run --allow-write --allow-net -f --unstabl
 ENV PATH=$PATH:/home/deno/.deno/bin
 
 # copy dependencies
-COPY --chown=deno:deno api/deps.js api/deps.js
-RUN deno cache api/deps.js
+COPY --chown=deno:deno api/deps.ts api/deps.ts
+RUN deno cache api/deps.ts
 
 # set shell
 ENV SHELL /bin/sh

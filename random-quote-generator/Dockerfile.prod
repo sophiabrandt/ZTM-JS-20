@@ -9,8 +9,8 @@ WORKDIR /opt/deno_app
 USER deno
 
 # copy dependencies
-COPY --chown=deno:deno api/deps.js api/deps.js
-RUN deno cache api/deps.js
+COPY --chown=deno:deno api/deps.ts api/deps.ts
+RUN deno cache api/deps.ts
 
 # copy in our source code last, as it changes the most
 COPY --chown=deno:deno . .
