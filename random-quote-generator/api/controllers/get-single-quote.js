@@ -9,7 +9,7 @@ function makeGetSingleQuote() {
         headers: {
           'Content-Type': 'application/json',
         },
-        status: data.data ? 200 : 400,
+        status: data ? 200 : 400,
         body: { data },
       }
     } catch (e) {

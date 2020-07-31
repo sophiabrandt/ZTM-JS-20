@@ -19,7 +19,7 @@ function makeCallback(controller) {
       controller(httpRequest)
         .then((httpResponse) => {
           if (httpResponse.headers) {
-            response.headers.set('Content-Type', httpRequest.headers['Content-Type'])
+            response.headers.set('Content-Type', httpResponse.headers['Content-Type'])
           }
           response.status = httpResponse.status
           response.body = httpResponse.body
