@@ -1,5 +1,5 @@
-import { buildMakeQuote } from './quote.js'
+import { makeBuildQuote } from './quote.js'
 
-const makeQuote = buildMakeQuote()
+const makeQuote = makeBuildQuote()
 
 export { makeQuote }

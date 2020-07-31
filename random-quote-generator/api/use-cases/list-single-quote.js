@@ -1,3 +1,5 @@
+import { makeQuote } from '../quote/index.js'
+
 function makeListSingleQuote({ singleQuoteData }) {
   return async function listSingleQuote() {
     const fetchedSingleQuote = await singleQuoteData.fetchSingleQuote()
@@ -12,7 +14,13 @@ function makeListSingleQuote({ singleQuoteData }) {
         message: 'Quote not available',
       }
     }
-    return fetchedSingleQuote
+
+    const singleQuote = makeQuote(fetchedSingleQuote)
+
+    return {
+      quoteAuthor: singleQuote.getQuoteAuthor(),
+      quoteText: singleQuote.getQuoteText(),
+    }
   }
 }
 

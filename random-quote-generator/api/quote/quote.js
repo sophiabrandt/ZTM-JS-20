@@ -1,6 +1,6 @@
 function makeBuildQuote() {
-  return function makeQuote(quoteInfo) {
-    const { quoteAuthor, quoteText } = quoteInfo
+  return function makeQuote(singleQuote) {
+    const { quoteAuthor, quoteText } = singleQuote
 
     return Object.freeze({
       getQuoteAuthor: () => quoteAuthor,
