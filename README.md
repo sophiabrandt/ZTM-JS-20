@@ -29,13 +29,7 @@ $ npx degit sophiabrandt/ZTM-JS-20 ZTM-JS-20
 
 ## Usage
 
-Each project has a folder. Navigate into the project, then run the following command inside the terminal:
-
-```bash
-$ npx live-server
-```
-
-This will open a new tab in your standard web browser on port 8080 ([http://localhost:8080](http://localhost:8080)).
+Each project has a folder. You can find instructions there.
 
 ## Contributing
 
