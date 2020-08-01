@@ -14,14 +14,9 @@ task('denon', [], async function () {
   )
 })
 
-desc('Run tests')
-task('test', [], async function () {
-  await sh('deno test --allow-read api/models/quote.spec.ts')
-})
-
 desc('Cache and lock dependencies')
 task('cache', [], async function () {
-  await sh('deno cache --lock=lock.json --lock-write api/deps.js')
+  await sh('deno cache --lock=lock.json --lock-write api/deps.ts')
 })
 
 run()

@@ -1,9 +1,9 @@
-.PHONY: build-dev build-prod dev-api dev-client run-dev sh start test stop clean
+.PHONY: dev-build prod-build dev-api dev-client dev-run sh start stop clean
 
-build-dev:
+dev-build:
 	docker build -t api .
 
-prod-prod:
+prod-build:
 	docker build -f Dockerfile.prod -t api .
 
 dev-api:
@@ -12,7 +12,7 @@ dev-api:
 dev-client:
 	pnpx live-server client
 
-run-dev:
+dev-run:
 	make -j dev-api dev-client
 
 sh:
@@ -21,11 +21,8 @@ sh:
 start:
 	docker run --rm -it -v "${PWD}/.":/opt/deno_app -p 3000:3000 api
 
-test:
-	docker run --rm -it -v "${PWD}/.":/opt/deno_app -p 3000:3000 api test
-
 stop:
-	docker stop (docker ps -aq)
+	docker ps -aq | xargs docker stop
 
 clean:
-	docker rm (docker ps -aq)
+	docker ps -aq | xargs docker rm
