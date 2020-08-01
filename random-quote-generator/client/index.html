@@ -10,35 +10,64 @@
     <title>Random Quote Generator</title>
   </head>
   <body>
-      <!-- container -->
-    <div id="quote-container" class="center-container">
-      <!-- Quote -->
-      <div class="quote-text">
-        <span id="quote">Life is a process. We are a process. The universe is a process.</span>
-      </div>
-      <!-- Author -->
-      <div class="quote-author"><span id="author">Anne Schaef</span></div>
-      <!-- Buttons -->
-      <div class="button-container cluster">
-        <div>
-          <button
-            id="twitter"
-            class="button with-icon"
-            tabindex="0"
-            type="button"
-            title="Tweet This!"
+    <!-- container -->
+    <div class="center-container">
+      <div id="quote-container" class="hidden">
+        <!-- Quote -->
+        <div class="quote-text">
+          <span id="quote"
+            >Life is a process. We are a process. The universe is a
+            process.</span
+          >
+        </div>
+        <!-- Author -->
+        <div class="quote-author"><span id="author">Anne Schaef</span></div>
+        <!-- Buttons -->
+        <div class="button-container cluster">
+          <div>
+            <button
+              id="twitter"
+              class="button with-icon"
+              tabindex="0"
+              type="button"
+              title="Tweet This!"
             >
-            <img src="../static/twitter.svg" class="icon" alt="Twitter button" />Tweet
-          </button>
+              <img
+                src="../static/twitter.svg"
+                class="icon"
+                alt="Twitter button"
+              />Tweet
+            </button>
             <button
               id="new-quote"
               class="button with-icon"
               tabindex="0"
               type="button"
               title="Get a new quote!"
-              >
-              <img src="../static/shuffle.svg" class="icon" alt="Shuffle button" />New Quote</button>
+            >
+              <img
+                src="../static/shuffle.svg"
+                class="icon"
+                alt="Shuffle button"
+              />New Quote
+            </button>
+          </div>
         </div>
+      </div>
+      <!-- Loader -->
+      <div class="lds-default" id="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
     <script type="module" src="index.js"></script>

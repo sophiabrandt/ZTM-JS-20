@@ -6,6 +6,18 @@ const quoteText = document.getElementById('quote')
 const quoteAuthor = document.getElementById('author')
 const twitterButton = document.getElementById('twitter')
 const newQuoteButton = document.getElementById('new-quote')
+const loader = document.getElementById('loader')
+
+// Show loading spinner
+function showLoadingSpinner() {
+  loader.classList.remove('hidden')
+  quoteContainer.classList.add('hidden')
+}
+
+function hideLoadingSpinner() {
+  loader.classList.add('hidden')
+  quoteContainer.classList.remove('hidden')
+}
 
 // get quote
 let url = config.url
@@ -21,8 +33,8 @@ async function getQuote(url) {
 }
 
 function getAndDisplayNewQuote(url) {
-  // check aria-pressed state of button
   getQuote(url).then((quote) => {
+    showLoadingSpinner()
     if (!!quote.data) {
       if (quote.data.quoteAuthor.trim().length === 0) {
         quoteAuthor.innerText = 'Unknown'
@@ -40,6 +52,7 @@ function getAndDisplayNewQuote(url) {
       }
       quoteText.innerText = quote.data.quoteText
     }
+    hideLoadingSpinner()
   })
 }
 
