@@ -2,13 +2,13 @@ import { config } from './config.js'
 
 // target HTML elements
 const quoteContainer = document.getElementById('quote-container')
-const quoteText = document.getElementById('quote')
-const quoteAuthor = document.getElementById('author')
+const quote= document.getElementById('quote')
+const author = document.getElementById('author')
 const twitterButton = document.getElementById('twitter')
 const newQuoteButton = document.getElementById('new-quote')
 const loader = document.getElementById('loader')
 
-// Show loading spinner
+// Loading Spinner
 function showLoadingSpinner() {
   loader.classList.remove('hidden')
   quoteContainer.classList.add('hidden')
@@ -19,8 +19,8 @@ function hideLoadingSpinner() {
   quoteContainer.classList.remove('hidden')
 }
 
-// get quote
-let apiURL = config.url
+// read back-end URL from config, fetch data (reurns a Promise)
+const apiURL = config.url
 
 async function getQuote(url) {
   try {
@@ -32,30 +32,50 @@ async function getQuote(url) {
   }
 }
 
+// Display function and utilities
+
+function displayAuthor(quoteAuthor) {
+  if (quoteAuthor.trim().length === 0) {
+    author.innerText = 'Unkown'
+  }
+  author.innerText = quoteAuthor
+}
+
+function displayQuote(quoteText) {
+  if (quoteText.length > 120) {
+    quote.classList.add('long-quote')
+    // also reduce font size for the author
+    // for visual consistency
+    author.classList.add('long-quote')
+  } else {
+    quote.classList.remove('long-quote')
+    author.classList.remove('long-quote')
+  }
+  quote.innerText = quoteText
+}
+
 function getAndDisplayNewQuote(url = apiURL) {
   showLoadingSpinner()
+
   getQuote(url).then((quote) => {
     if (!!quote.data) {
-      if (quote.data.quoteAuthor.trim().length === 0) {
-        quoteAuthor.innerText = 'Unknown'
-      } else {
-        quoteAuthor.innerText = quote.data.quoteAuthor
-      }
-
-      // improve readability/style for long text
-      if (quote.data.quoteText.length > 120) {
-        quoteText.classList.add('long-quote')
-        quoteAuthor.classList.add('long-quote')
-      } else {
-        quoteText.classList.remove('long-quote')
-        quoteAuthor.classList.remove('long-quote')
-      }
-      quoteText.innerText = quote.data.quoteText
+      displayAuthor(quote.data.quoteAuthor)
+      displayQuote(quote.data.quoteText)
     }
+
     hideLoadingSpinner()
   })
 }
 
+// tweet
+function tweetQuote() {
+  const tweetQuote = quote.innerText
+  const tweetAuthor = author.innerText
+  const twitterUrl = `http://twitter.com/intent/tweet?text=${tweetQuote} - ${tweetAuthor}`
+  window.open(twitterUrl, '_blank')
+}
+
+// handling button events
 function buttonHandler(target, callback) {
   callback()
 }
@@ -74,14 +94,6 @@ function handleButtonKeyDown(event, callback) {
   }
 }
 
-// tweet
-function tweetQuote() {
-  const quote = quoteText.innerText
-  const author = quoteAuthor.innerText
-  const twitterUrl = `http://twitter.com/intent/tweet?text=${quote} - ${author}`
-  window.open(twitterUrl, '_blank')
-}
-
 // Event Listeners
 newQuoteButton.addEventListener('click', (e) =>
   handleButtonClick(e, getAndDisplayNewQuote)
@@ -94,5 +106,5 @@ twitterButton.addEventListener('keydown', (e) =>
   handleButtonKeyDown(e, tweetQuote)
 )
 
-// Get a quote on start
+// Start Random Quote Generator
 getAndDisplayNewQuote(apiURL)
