@@ -20,7 +20,7 @@ function hideLoadingSpinner() {
 }
 
 // get quote
-let url = config.url
+let apiURL = config.url
 
 async function getQuote(url) {
   try {
@@ -28,13 +28,13 @@ async function getQuote(url) {
     const quote = await response.json()
     return quote
   } catch (e) {
-    console.error(e.message)
+    return null
   }
 }
 
-function getAndDisplayNewQuote(url) {
+function getAndDisplayNewQuote(url = apiURL) {
+  showLoadingSpinner()
   getQuote(url).then((quote) => {
-    showLoadingSpinner()
     if (!!quote.data) {
       if (quote.data.quoteAuthor.trim().length === 0) {
         quoteAuthor.innerText = 'Unknown'
@@ -84,10 +84,10 @@ function tweetQuote() {
 
 // Event Listeners
 newQuoteButton.addEventListener('click', (e) =>
-  handleButtonClick(e, getAndDisplayNewQuote(url))
+  handleButtonClick(e, getAndDisplayNewQuote)
 )
 newQuoteButton.addEventListener('keydown', (e) =>
-  handleButtonKeyDown(e, getAndDisplayNewQuote(url))
+  handleButtonKeyDown(e, getAndDisplayNewQuote)
 )
 twitterButton.addEventListener('click', (e) => handleButtonClick(e, tweetQuote))
 twitterButton.addEventListener('keydown', (e) =>
@@ -95,4 +95,4 @@ twitterButton.addEventListener('keydown', (e) =>
 )
 
 // Get a quote on start
-getAndDisplayNewQuote(url)
+getAndDisplayNewQuote(apiURL)
