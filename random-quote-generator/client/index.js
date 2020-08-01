@@ -19,7 +19,24 @@ async function getQuote(url) {
     console.error(e.message)
   }
 }
-getQuote(url).then(quote => {
-  quoteAuthor.innerText = quote.data.quoteAuthor
-  quoteText.innerText = quote.data.quoteText
+
+getQuote(url).then((quote) => {
+  if (!!quote.data) {
+    if (quote.data.quoteAuthor.trim().length === 0) {
+      quoteAuthor.innerText = 'Unknown'
+    } else {
+      quoteAuthor.innerText = quote.data.quoteAuthor
+    }
+
+    // reduce font size for long quotes for better
+    // container fitting
+    if (quote.data.quoteText.length > 120) {
+      quoteText.classList.add('long-quote')
+      quoteAuthor.classList.add('long-quote')
+    } else {
+      quoteText.classList.remove('long-quote')
+      quoteAuthor.classList.remove('long-quote')
+    }
+    quoteText.innerText = quote.data.quoteText
+  }
 })
