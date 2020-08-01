@@ -88,20 +88,23 @@ body {
   font-size: 1.2rem;
   margin-top: 3rem;
   margin-left: 3rem;
+  position: relative;
+  top: -0.25rem;
+  left: -0.25rem;
+  box-shadow: 0.125em 0.125em 0 rgb(var(--color-dark-primary)), 0.25em 0.25em rgb(var(--color-dark-secondary));
+  transition: box-shadow .2s ease-in-out;
 }
 
 button:hover {
   background-color: rgb(var(--color-dark-secondary));
 }
 
-[aria-pressed] {
-  position: relative;
-  top: -0.25rem;
-  left: -0.25rem;
-  box-shadow: 0.125em 0.125em 0 rgb(var(--color-dark-primary)), 0.25em 0.25em rgb(var(--color-dark-secondary));
+button:focus {
+  background-color: rgb(var(--color-dark-secondary));
 }
 
-[aria-pressed='true'] {
+
+button:active {
   box-shadow: inset 0 0 0 0 0.15rem rgb(var(--color-dark-primary)), inset 0.25em 0.25em 0 rgb(var(--color-dark-secondary));
 }
 
