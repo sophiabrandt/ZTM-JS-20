@@ -6,16 +6,16 @@ const API_KEY = config().API_KEY
 export interface Photo {
   id: string
   description: string
-  html: string
-  regularURL: string
+  link: string
+  imgURL: string
 }
 
-const photos = new Map<number, Photo>()
+const photos = new Map<string, Photo>()
 
-async function getRandomPhotos(count: number = 10) {
-  log.info(`Get ${count} random photo(s)...`)
+async function fetchRandomPhotos(count: number = 20) {
+  log.info(`Fetching ${count} random photo(s)...`)
   const unsplashURL = `https://api.unsplash.com/photos/random?client_id=${API_KEY}&count=${count}`
-  const response = await fetch(unsplashURL, { method: 'GET' })
+  const response = await fetch(unsplashURL, { method: 'GET', headers: {'Content-Type': 'applicaton/json', 'Accept-Version': 'v1'} })
 
   if (!response.ok) {
     log.warning('Problem fetching photos from Unsplash API')
@@ -24,15 +24,21 @@ async function getRandomPhotos(count: number = 10) {
 
   const randomPhotos = await response.json()
   for (const photo of randomPhotos) {
-    log.info(photos)
+    const photoData = {
+      id: photo['id'],
+      description: photo['alt_description'],
+      link: photo['links']['html'],
+      imgURL: photo['urls']['regular'],
+    }
+
+    photos.set(photoData.id, photoData)
   }
 }
 
-await getRandomPhotos(10)
+await fetchRandomPhotos(20)
 log.info('Downloading photos...')
 
 // endpoints
-
-export function getAll() {
-  log.info('photos here')
+export function getRandomPhotos() {
+  return Array.from(photos.values())
 }
