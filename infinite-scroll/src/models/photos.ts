@@ -12,10 +12,13 @@ export interface Photo {
 
 const photos = new Map<string, Photo>()
 
-async function fetchRandomPhotos(count: number = 20) {
+async function fetchRandomPhotos(count: number = 20):Promise<void> {
   log.info(`Fetching ${count} random photo(s)...`)
   const unsplashURL = `https://api.unsplash.com/photos/random?client_id=${API_KEY}&count=${count}`
-  const response = await fetch(unsplashURL, { method: 'GET', headers: {'Content-Type': 'applicaton/json', 'Accept-Version': 'v1'} })
+  const response = await fetch(unsplashURL, {
+    method: 'GET',
+    headers: { 'Content-Type': 'applicaton/json', 'Accept-Version': 'v1' },
+  })
 
   if (!response.ok) {
     log.warning('Problem fetching photos from Unsplash API')
