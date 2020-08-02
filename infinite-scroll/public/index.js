@@ -21,19 +21,29 @@ async function setPhotos(apiURL = url) {
   return photos
 }
 
+function setAttributes(elements, attributes) {
+  for (const [key, value] of attributes.entries()) {
+    elements.setAttribute(key, value)
+  }
+}
+
 function displayPhotos(photoData) {
   // create new elements for each photo
   photoData.forEach((photo) => {
     // create <a> element to link to Unsplash
     const item = document.createElement('a')
-    item.setAttribute('href', photo.link)
-    item.setAttribute('target', '__blank')
+    setAttributes(item, {
+      href: photo.link,
+      target: '_blank'
+    })
 
     // create <imd> for photo
     const img = document.createElement('img')
-    img.setAttribute('src', photo.imgURL)
-    img.setAttribute('alt', photo.description)
-    img.setAttribute('title', photo.description)
+    setAttributes(img, {
+      src: photo.imgURL,
+      alt: photo.description,
+      title: photo.description
+    })
 
     // put <img> inside <a>, append to stack container
     item.appendChild(img)
