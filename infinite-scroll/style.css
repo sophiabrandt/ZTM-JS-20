@@ -16,10 +16,10 @@
   --color-white-smoke: #f5f5f5;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 body {
-  font-family: Bebas Neue, sans-serif;
+  font-family: Anton, sans-serif;
 }
 
 .stack {
