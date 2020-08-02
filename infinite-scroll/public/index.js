@@ -51,6 +51,13 @@ function displayPhotos(photoData) {
   })
 }
 
+// check to see if scrolling is near bottom of page
+window.addEventListener('scroll', () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight -1000) {
+    fetchAndDisplayPhotos()
+  }
+})
+
 // fetch and display photos on startup
 async function fetchAndDisplayPhotos() {
   await setPhotos(url)
