@@ -49,6 +49,7 @@ app.use(async (ctx) => {
   const fileWhitelist = [
     '/index.html',
     '/index.js',
+    '/config.js',
     '/style.css',
     '/static/images/loader.svg',
   ]
