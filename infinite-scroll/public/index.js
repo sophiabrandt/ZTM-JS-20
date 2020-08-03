@@ -8,7 +8,10 @@ const stackContainer = document.getElementById('stack-container')
 
 async function fetchData(apiURL = url) {
   try {
-    const response = await fetch(apiURL, {method: 'GET', headers: {'Set-Cookie': 'SameSite=strict'}})
+    const response = await fetch(apiURL, {
+      method: 'GET',
+      headers: { 'Set-Cookie': 'SameSite=strict' },
+    })
     const data = await response.json()
     return data
   } catch (e) {
@@ -34,7 +37,7 @@ function displayPhotos(photoData) {
     const item = document.createElement('a')
     setAttributes(item, {
       href: photo.link,
-      target: '_blank'
+      target: '_blank',
     })
 
     // create <imd> for photo
@@ -42,7 +45,7 @@ function displayPhotos(photoData) {
     setAttributes(img, {
       src: photo.imgURL,
       alt: photo.description,
-      title: photo.description
+      title: photo.description,
     })
 
     // put <img> inside <a>, append to stack container
@@ -51,17 +54,30 @@ function displayPhotos(photoData) {
   })
 }
 
-// check to see if scrolling is near bottom of page
-window.addEventListener('scroll', () => {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight -1000) {
-    fetchAndDisplayPhotos()
-  }
-})
+function showLoading() {
+  loader.classList.remove('visually-hidden')
+}
+
+async function hideLoading() {
+  setTimeout(() => {
+    loader.classList.add('visually-hidden')
+  }, 1000)
+}
 
 // fetch and display photos on startup
 async function fetchAndDisplayPhotos() {
   await setPhotos(url)
   displayPhotos(photos)
 }
+
+// check to see if scrolling is near bottom of page
+window.addEventListener('scroll', async () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement
+  if (scrollTop + clientHeight >= scrollHeight - 5) {
+    showLoading()
+    await fetchAndDisplayPhotos()
+    hideLoading()
+  }
+})
 
 fetchAndDisplayPhotos()

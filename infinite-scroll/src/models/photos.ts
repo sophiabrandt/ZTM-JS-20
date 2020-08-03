@@ -12,7 +12,7 @@ export interface Photo {
 
 const photos = new Map<string, Photo>()
 
-async function fetchRandomPhotos(count: number = 20): Promise<void> {
+async function fetchRandomPhotos(count: number = 30): Promise<void> {
   log.info(`Fetching ${count} random photo(s)...`)
   const unsplashURL = `https://api.unsplash.com/photos/random?client_id=${API_KEY}&count=${count}`
   const response = await fetch(unsplashURL, {
@@ -38,7 +38,7 @@ async function fetchRandomPhotos(count: number = 20): Promise<void> {
   }
 }
 
-await fetchRandomPhotos(20)
+await fetchRandomPhotos(30)
 log.info('Downloading photos...')
 
 // endpoints
