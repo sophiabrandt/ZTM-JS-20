@@ -17,7 +17,7 @@ async function fetchRandomPhotos(count: number = 20): Promise<void> {
   const unsplashURL = `https://api.unsplash.com/photos/random?client_id=${API_KEY}&count=${count}`
   const response = await fetch(unsplashURL, {
     method: 'GET',
-    headers: { 'Content-Type': 'applicaton/json', 'Accept-Version': 'v1' },
+    headers: { 'Content-Type': 'applicaton/json', 'Accept-Version': 'v1', 'Set-Cookie': 'SameSite=strict' },
   })
 
   if (!response.ok) {

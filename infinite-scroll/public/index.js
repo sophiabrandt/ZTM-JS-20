@@ -8,7 +8,7 @@ const stackContainer = document.getElementById('stack-container')
 
 async function fetchData(apiURL = url) {
   try {
-    const response = await fetch(apiURL)
+    const response = await fetch(apiURL, {method: 'GET', headers: {'Set-Cookie': 'SameSite=strict'}})
     const data = await response.json()
     return data
   } catch (e) {
@@ -22,7 +22,7 @@ async function setPhotos(apiURL = url) {
 }
 
 function setAttributes(elements, attributes) {
-  for (const [key, value] of attributes.entries()) {
+  for (const [key, value] of Object.entries(attributes)) {
     elements.setAttribute(key, value)
   }
 }
