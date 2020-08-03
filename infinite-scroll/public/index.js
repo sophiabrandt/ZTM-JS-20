@@ -30,9 +30,9 @@ function setAttributes(elements, attributes) {
   }
 }
 
-function displayPhotos(photoData) {
+function displayPhotos(photosData) {
   // create new elements for each photo
-  photoData.forEach((photo) => {
+  photosData.forEach((photo) => {
     // create <a> element to link to Unsplash
     const item = document.createElement('a')
     setAttributes(item, {
@@ -70,7 +70,7 @@ async function fetchAndDisplayPhotos() {
   displayPhotos(photos)
 }
 
-// check to see if scrolling is near bottom of page
+// fetch new photos when scrolling is near bottom of page
 window.addEventListener('scroll', async () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement
   if (scrollTop + clientHeight >= scrollHeight - 5) {
