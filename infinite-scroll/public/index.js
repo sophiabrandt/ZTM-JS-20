@@ -19,8 +19,9 @@ async function fetchData(apiURL = url) {
   }
 }
 
-async function setPhotos(apiURL = url) {
-  photos = await fetchData(apiURL)
+async function fetchAndSetPhotos(apiURL = url, count = 1) {
+  const urlWithCount = `${url}?count=${count}`
+  photos = await fetchData(urlWithCount)
   return photos
 }
 
@@ -64,9 +65,9 @@ async function hideLoading() {
   }, 1000)
 }
 
-// fetch and display photos on startup
-async function fetchAndDisplayPhotos() {
-  await setPhotos(url)
+// fetch and display photos
+async function fetchAndDisplayPhotos(count=1) {
+  await fetchAndSetPhotos(url, count)
   displayPhotos(photos)
 }
 
@@ -75,9 +76,10 @@ window.addEventListener('scroll', async () => {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement
   if (scrollTop + clientHeight >= scrollHeight - 5) {
     showLoading()
-    await fetchAndDisplayPhotos()
+    await fetchAndDisplayPhotos(3)
     hideLoading()
   }
 })
 
-fetchAndDisplayPhotos()
+// initial setup
+fetchAndDisplayPhotos(20)
