@@ -10,14 +10,19 @@ export interface Photo {
   imgURL: string
 }
 
-const photos = new Map<string, Photo>()
+const unsplashURL = `https://api.unsplash.com/photos/random?client_id=${API_KEY}`
 
-async function fetchRandomPhotos(count: number = 30): Promise<void> {
+async function fetchRandomPhotos(count: number = 30): Promise<Array<Photo>> {
+  const photos = new Map<string, Photo>()
   log.info(`Fetching ${count} random photo(s)...`)
-  const unsplashURL = `https://api.unsplash.com/photos/random?client_id=${API_KEY}&count=${count}`
-  const response = await fetch(unsplashURL, {
+  const url = `${unsplashURL}&count=${count}`
+  const response = await fetch(url, {
     method: 'GET',
-    headers: { 'Content-Type': 'applicaton/json', 'Accept-Version': 'v1', 'Set-Cookie': 'SameSite=strict' },
+    headers: {
+      'Content-Type': 'applicaton/json',
+      'Accept-Version': 'v1',
+      'Set-Cookie': 'SameSite=strict',
+    },
   })
 
   if (!response.ok) {
@@ -36,12 +41,11 @@ async function fetchRandomPhotos(count: number = 30): Promise<void> {
 
     photos.set(photoData.id, photoData)
   }
-}
 
-await fetchRandomPhotos(30)
-log.info('Downloading photos...')
+  return Array.from(photos.values())
+}
 
 // endpoints
 export function getRandomPhotos() {
-  return Array.from(photos.values())
+  return fetchRandomPhotos(30)
 }
