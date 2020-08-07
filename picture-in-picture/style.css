@@ -1,0 +1,86 @@
+/**
+ * VARIABLES
+ */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Roboto&display=swap');
+
+:root {
+  --color-dark: #1b262c;
+  --color-secondary: #89c9b8;
+  --color-tertiary: #84a9ac;
+  --color-light-grey: #dddddd;
+  --color-white-smoke: #f5f5f5;
+  --font-base-family: -apple-system, BlinkMacSystemFont, 'Roboto', Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  --font-heading-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  --measure: 60ch;
+  --metric-rhythm: 2rem;
+  --metric-gutter: 2rem;
+  --metric-box-padding: 1rem 1rem;
+  --metric-interaction-padding: 0.6rem 0.6rem;
+}
+
+/** 
+ * GLOBAL STYLES 
+ */
+
+body {
+  font-family: var(--font-base-family, sans-serif);
+  display: grid;
+  place-items: center;
+  background: var(--color-light);
+  color: var(--color-text);
+  padding: var(--metric-gutter, 2rem);
+}
+
+/**
+ * CENTER UTILITY
+ */
+.center {
+  box-sizing: content-box;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--measure);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/** 
+ * VISUALLY HIDDEN UTILITY
+ */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+/**
+ * BUTTON
+ */
+.button {
+  background: var(--color-light-grey);
+  color: var(--color-dark);
+  font-size: 1.6rem;
+  min-width: 3.5rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  filter: brightness(1.05);
+}
+
+.button svg {
+  transform: translateY(1px); /* Optical adjustment */
+}
+
+:focus {
+  outline: 2px dotted;
+  outline-offset: 0.25rem;
+}
