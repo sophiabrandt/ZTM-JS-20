@@ -29,7 +29,7 @@ body {
   font-family: var(--font-base-family, sans-serif);
   display: grid;
   place-items: center;
-  background: var(--color-light);
+  background: var(--color-white-smoke);
   color: var(--color-text);
   padding: var(--metric-gutter, 2rem);
 }
@@ -66,20 +66,38 @@ body {
 /**
  * BUTTON
  */
+input[type],
+button {
+  margin: 0;
+  font: inherit;
+  line-height: 1;
+  padding: 0.8rem;
+  padding: var(--metric-interaction-padding);
+  outline-offset: -1px;
+}
+
 .button {
-  background: var(--color-light-grey);
+  background-color: var(--color-light-grey);
   color: var(--color-dark);
   font-size: 1.6rem;
   min-width: 3.5rem;
+  border-radius: 0.5rem;
   cursor: pointer;
+  outline: none;
+  font-family: var(--font-base-family);
+  -webkit-transition: background 0.5s ease-in;
+  -moz-transition: background 0.5s ease-in;
+  -o-transition: background 0.5s ease-in;
+  transition: background 0.5s ease-in;
 }
 
 .button:hover {
   filter: brightness(1.05);
+  background-color: var(--color-secondary);
 }
 
-.button svg {
-  transform: translateY(1px); /* Optical adjustment */
+.button:active {
+  transform: translateY(3px); /* Optical adjustment */
 }
 
 :focus {
